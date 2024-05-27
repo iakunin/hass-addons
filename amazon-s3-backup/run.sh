@@ -16,7 +16,7 @@ export AWS_SECRET_ACCESS_KEY="$(bashio::config 'aws_secret_access_key')"
 export AWS_REGION="$bucket_region"
 
 bashio::log.debug "Using AWS CLI version: '$(aws --version)'"
-bashio::log.debug "Command: 'aws s3 sync $monitor_path s3://$bucket_name/ --no-progress --region $bucket_region'"
+bashio::log.debug "Command: 'aws s3 sync $monitor_path s3://$bucket_name/ --no-progress --region $bucket_region --endpoint-url $endpoint_url'"
 aws s3 sync $monitor_path s3://"$bucket_name"/ --no-progress --region "$bucket_region" --endpoint-url "$endpoint_url"
 
 bashio::log.info "Finished Amazon S3 Backup."
