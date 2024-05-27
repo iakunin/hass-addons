@@ -51,7 +51,9 @@ The automation above first creates a full backup at 4am, and then at 4:15am sync
 Example add-on configuration:
 
 ```
-backup_path: /media/my-nas
+backup_paths: 
+  - /backup
+  - /media/my-nas
 s3_access_key: AKXXXXXXXXXXXXXXXX
 s3_secret_access_key: XXXXXXXXXXXXXXXX
 bucket_name: my-bucket
@@ -59,8 +61,8 @@ bucket_region: ru-central1
 endpoint_url: https://storage.yandexcloud.net
 ```
 
-### Option: `backup_path` (required)
-Source path to make backup.
+### Option: `backup_paths` (required)
+Source paths (one or multiple) to make backup.
 
 ### Option: `s3_access_key` (required)
 IAM access key used to access the S3 bucket.
