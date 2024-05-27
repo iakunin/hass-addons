@@ -33,14 +33,13 @@ remote_path="s3://$bucket_name$(abspath "$backup_path")"
 
 export AWS_ACCESS_KEY_ID="$(bashio::config 'aws_access_key')"
 export AWS_SECRET_ACCESS_KEY="$(bashio::config 'aws_secret_access_key')"
-#export AWS_REGION="$bucket_region"
-
 
 bashio::log.debug "Using AWS CLI version: '$(aws --version)'"
 #bashio::log.debug "Command: 'aws s3 sync $backup_path s3://$bucket_name/ --no-progress --region $bucket_region --endpoint-url $endpoint_url'"
 set -x
 aws s3 sync "$backup_path" "$remote_path" \
   --delete \
+  --no-progress \
   --region "$bucket_region" \
   --endpoint-url "$endpoint_url"
 
