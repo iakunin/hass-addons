@@ -3,17 +3,17 @@ FROM ${BUILD_FROM}
 
 ENV LANG C.UTF-8
 
-COPY run.sh /
-RUN chmod a+x /run.sh
-
-# add aws-cli and deps
+# add aws-cli
 RUN apk add -v --update --no-cache \
         # python3 \
         # py3-pip \
-        groff \
+        # groff \
         less \
         aws-cli
     #     && \
     # pip3 install --upgrade awscli
-    
-CMD [ "/run.sh" ]  
+
+COPY run.sh /
+RUN chmod a+x /run.sh
+
+CMD [ "/run.sh" ]
