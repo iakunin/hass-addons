@@ -10,8 +10,8 @@ RUN chmod a+x /run.sh
 RUN apk add -v --update --no-cache \
         python3 \
         py3-pip \
-        # groff \
-        # less \
+        groff \
+        less \
         && \
     pip3 install --upgrade awscli
     
