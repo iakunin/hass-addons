@@ -19,15 +19,15 @@ Follow these steps to get the add-on installed on your system:
 To automate syncing to S3, add this automation in Home Assistants `configuration.yaml` and change it to your needs:
 ```
 automation:
-  - id: sync_to_s3
-    alias: Sync to S3 every day at 4am
+  - alias: Sync to S3
+    description: Sync to S3 every day at 4am
     trigger:
-      platform: time
-      at: "04:00:00"
+      - platform: time
+        at: "04:00:00"
     action:
-      service: hassio.addon_start
-      data:
-        addon: XXXXX_generic-s3-sync
+      - service: hassio.addon_start
+        data:
+          addon: XXXXXXX_generic-s3-sync
 ```
 
 The automation above runs generic-s3-sync every day at 4am.
