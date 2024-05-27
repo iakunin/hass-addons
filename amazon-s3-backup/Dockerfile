@@ -8,11 +8,12 @@ RUN chmod a+x /run.sh
 
 # add aws-cli and deps
 RUN apk add -v --update --no-cache \
-        python3 \
-        py3-pip \
+        # python3 \
+        # py3-pip \
         groff \
         less \
-        && \
-    pip3 install --upgrade awscli
+        aws-cli
+    #     && \
+    # pip3 install --upgrade awscli
     
 CMD [ "/run.sh" ]  
