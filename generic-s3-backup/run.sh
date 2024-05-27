@@ -24,7 +24,7 @@ function abspath() {
 }
 
 bashio::log.debug "Using AWS CLI version: '$(aws --version)'"
-bashio::log.info "Starting Amazon S3 Backup..."
+bashio::log.info "Starting Generic S3 Backup..."
 
 backup_paths="$(bashio::config 'backup_paths')"
 bucket_name="$(bashio::config 'bucket_name')"
@@ -34,16 +34,14 @@ endpoint_url="$(bashio::config 'endpoint_url')"
 export AWS_ACCESS_KEY_ID="$(bashio::config 's3_access_key')"
 export AWS_SECRET_ACCESS_KEY="$(bashio::config 's3_secret_access_key')"
 
-
 for backup_path in $backup_paths; do
+  bashio::log.info "Syncing path '$backup_path' ..."
   remote_path="s3://$bucket_name$(abspath "$backup_path")"
-  set -x
   aws s3 sync "$backup_path" "$remote_path" \
     --delete \
     --no-progress \
     --region "$bucket_region" \
     --endpoint-url "$endpoint_url"
-  set +x
 done
 
-bashio::log.info "Finished Amazon S3 Backup."
+bashio::log.info "Finished Generic S3 Backup."
