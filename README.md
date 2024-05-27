@@ -12,4 +12,4 @@ You should now see the add-ons of this repository in your Home Assistant Add-On 
 
 ## Add-ons provided by this repository
 
-- **[Amazon S3 Backup](/amazon-s3-backup)** - Sync your Home Assistant backups to Amazon S3
+- **[Generic S3 Sync](/generic-s3-sync)** - Sync any folder within your Home Assistant to Generis S3 storage

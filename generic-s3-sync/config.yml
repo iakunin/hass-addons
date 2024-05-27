@@ -1,8 +1,8 @@
-name: Generic S3 Backup
-version: 1.4.1
-slug: generic-s3-backup
-description: Sync Backups to your Generic S3 bucket
-url: https://github.com/iakunin/hass-addons/blob/main/generic-s3-backup
+name: Generic S3 Sync
+version: 2.0.0
+slug: generic-s3-sync
+description: Sync any folder within your Home Assistant to Generis S3 storage
+url: https://github.com/iakunin/hass-addons/blob/main/generic-s3-sync
 arch:
   - aarch64
   - amd64
@@ -16,14 +16,14 @@ advanced: true
 hassio_api: true
 hassio_role: backup
 options:
-  backup_paths: []
+  sync_paths: []
   s3_access_key: ''
   s3_secret_access_key: ''
   bucket_name: ''
   bucket_region: ''
   endpoint_url: ''
 schema:
-  backup_paths:
+  sync_paths:
     - str
   s3_access_key: str
   s3_secret_access_key: password

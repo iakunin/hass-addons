@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Home Assistant Community Add-on: Amazon S3 Backup
+# Home Assistant Community Add-on: Generic S3 Sync
 # ==============================================================================
 #bashio::log.level "debug"
 
@@ -24,9 +24,9 @@ function abspath() {
 }
 
 bashio::log.debug "Using AWS CLI version: '$(aws --version)'"
-bashio::log.info "Starting Generic S3 Backup..."
+bashio::log.info "Starting Generic S3 Sync..."
 
-backup_paths="$(bashio::config 'backup_paths')"
+sync_paths="$(bashio::config 'sync_paths')"
 bucket_name="$(bashio::config 'bucket_name')"
 bucket_region="$(bashio::config 'bucket_region')"
 endpoint_url="$(bashio::config 'endpoint_url')"
@@ -34,14 +34,14 @@ endpoint_url="$(bashio::config 'endpoint_url')"
 export AWS_ACCESS_KEY_ID="$(bashio::config 's3_access_key')"
 export AWS_SECRET_ACCESS_KEY="$(bashio::config 's3_secret_access_key')"
 
-for backup_path in $backup_paths; do
-  bashio::log.info "Syncing path '$backup_path' ..."
-  remote_path="s3://$bucket_name$(abspath "$backup_path")"
-  aws s3 sync "$backup_path" "$remote_path" \
+for local_path in $sync_paths; do
+  bashio::log.info "Syncing path '$local_path' ..."
+  remote_path="s3://$bucket_name$(abspath "$local_path")"
+  aws s3 sync "$local_path" "$remote_path" \
     --delete \
     --no-progress \
     --region "$bucket_region" \
     --endpoint-url "$endpoint_url"
 done
 
-bashio::log.info "Finished Generic S3 Backup."
+bashio::log.info "Finished Generic S3 Sync."
