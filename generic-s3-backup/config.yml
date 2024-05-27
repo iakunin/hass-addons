@@ -1,0 +1,34 @@
+name: Generic S3 Backup
+version: 1.4.0
+slug: generic-s3-backup
+description: Sync Backups to your Generic S3 bucket
+url: https://github.com/iakunin/hass-addons/blob/main/generic-s3-backup
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+boot: manual
+init: false
+startup: once
+advanced: true
+hassio_api: true
+hassio_role: backup
+options:
+  backup_path: ''
+  s3_access_key: ''
+  s3_secret_access_key: ''
+  bucket_name: ''
+  bucket_region: ''
+  endpoint_url: ''
+schema:
+  backup_path: str
+  s3_access_key: str
+  s3_secret_access_key: password
+  bucket_name: str
+  bucket_region: str
+  endpoint_url: str
+map:
+  - backup:ro
+  - media:ro

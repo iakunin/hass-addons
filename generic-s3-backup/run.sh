@@ -31,8 +31,8 @@ bucket_region="$(bashio::config 'bucket_region')"
 endpoint_url="$(bashio::config 'endpoint_url')"
 remote_path="s3://$bucket_name$(abspath "$backup_path")"
 
-export AWS_ACCESS_KEY_ID="$(bashio::config 'aws_access_key')"
-export AWS_SECRET_ACCESS_KEY="$(bashio::config 'aws_secret_access_key')"
+export AWS_ACCESS_KEY_ID="$(bashio::config 's3_access_key')"
+export AWS_SECRET_ACCESS_KEY="$(bashio::config 's3_secret_access_key')"
 
 bashio::log.debug "Using AWS CLI version: '$(aws --version)'"
 
