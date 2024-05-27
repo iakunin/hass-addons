@@ -35,7 +35,7 @@ export AWS_ACCESS_KEY_ID="$(bashio::config 's3_access_key')"
 export AWS_SECRET_ACCESS_KEY="$(bashio::config 's3_secret_access_key')"
 
 
-for backup_path in $($backup_paths); do
+for backup_path in $backup_paths; do
   remote_path="s3://$bucket_name$(abspath "$backup_path")"
   set -x
   aws s3 sync "$backup_path" "$remote_path" \
